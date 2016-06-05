@@ -35,6 +35,21 @@ module.exports = function(grunt) {
         }
       }
     },
+    // Pug -> HTML
+    pug: {
+      compile: {
+        options: {
+          pretty: true
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= project.app %>/',
+          src: ['**/*.pug','!**/_*.pug'],
+          dest: '<%= project.build %>/',
+          ext: '.html'
+        }]
+      }
+    },
     // Adds any relevate autoprefixers supporting IE 11 and above
     autoprefixer: {
       options: {
@@ -76,6 +91,14 @@ module.exports = function(grunt) {
           max_jshint_notifications: 1
         }
       },
+      pug:{
+        options:{
+          title: "Grunt",
+          message: "Pug Compiled Successfully.",
+          duration: 2,
+          max_jshint_notifications: 1
+        }
+      },
       js:{
         options:{
           title: "Grunt",
@@ -89,7 +112,7 @@ module.exports = function(grunt) {
       content: {
         files: [{
           cwd: '<%= project.app %>/',
-          src: ['content/**/*', 'scripts/vendor/*.js', '**/*.html'],
+          src: ['content/**/*', 'scripts/vendor/*.js'],
           dest: '<%= project.build %>/'
         }],
       }
@@ -99,7 +122,7 @@ module.exports = function(grunt) {
       main: {
         expand: true,
         cwd: '<%= project.app %>/',
-        src: ['content/**', 'scripts/vendor/*.js', 'robots.txt', '**/*.html'],
+        src: ['content/**', 'scripts/vendor/*.js', 'robots.txt'],
         dest: '<%= project.build %>/',
       }
     },
@@ -122,6 +145,10 @@ module.exports = function(grunt) {
       js: {
         files: ['<%= project.js %>/app.js','<%= project.js %>/**/*.jsx'],
         tasks: ['babel', 'notify:js']
+      },
+      pug: {
+        files: ['<%= project.app %>/**/*.pug'],
+        tasks: ['pug', 'notify:pug']
       },
       content: {
         files: ['<%= project.app %>/content/**/*', '<%= project.js %>/vendor/*.js'],
@@ -153,6 +180,7 @@ module.exports = function(grunt) {
     'copy',
     'sass:dev',
     'autoprefixer',
+    'pug',
     'babel',
     'browserSync',
     'watch'
@@ -161,6 +189,7 @@ module.exports = function(grunt) {
     'clean',
     'copy',
     'autoprefixer',
+    'pug',
     'babel'
   ]);
 };
