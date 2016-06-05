@@ -35,6 +35,18 @@ module.exports = function(grunt) {
         }
       }
     },
+    // Adds any relevate autoprefixers supporting IE 11 and above
+    autoprefixer: {
+      options: {
+        browsers: ["> 1%", "ie > 10"],
+        map: true
+      },
+      target: {
+        files: {
+            "<%= project.build %>/style.css": "<%= project.build %>/style.css"
+        }
+      }
+    },
     notify: {
       sass:{
         options:{
@@ -65,7 +77,7 @@ module.exports = function(grunt) {
       content: {
         files: [{
           cwd: '<%= project.app %>/',
-          src: ['content/**/*', 'scripts/vendor/*.js', '**/*.php'],
+          src: ['content/**/*', 'scripts/vendor/*.js', '**/*.html'],
           dest: '<%= project.build %>/'
         }],
       }
@@ -75,7 +87,7 @@ module.exports = function(grunt) {
       main: {
         expand: true,
         cwd: '<%= project.app %>/',
-        src: ['content/**', 'scripts/vendor/*.js', 'robots.txt'],
+        src: ['content/**', 'scripts/vendor/*.js', 'robots.txt', '**/*.html'],
         dest: '<%= project.build %>/',
       }
     },
@@ -116,7 +128,8 @@ module.exports = function(grunt) {
           ]
         },
         options: {
-          watchTask: true
+          watchTask: true,
+          server: '<%= project.build %>/'
         }
       }
     }
