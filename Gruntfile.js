@@ -47,19 +47,23 @@ module.exports = function(grunt) {
         }
       }
     },
+    // Babel/React build
+    babel: {
+      options: {
+        sourceMap: true,
+        presets: ['es2015']
+      },
+      dist: {
+        files: {
+          'build/scripts/app.js': '<%= project.js %>/app.js'
+        }
+      }
+    },
     notify: {
       sass:{
         options:{
           title: "Grunt",
-          message: "Sass Compiled Successfully.",
-          duration: 2,
-          max_jshint_notifications: 1
-        }
-      },
-      autoprefixer:{
-        options:{
-          title: "Grunt",
-          message: "CSS Autoprefixed",
+          message: "Sass compiled and autoprefixed successfully.",
           duration: 2,
           max_jshint_notifications: 1
         }
@@ -67,7 +71,15 @@ module.exports = function(grunt) {
       content:{
         options:{
           title: "Grunt",
-          message: "Content Updated or Copied Successfully.",
+          message: "Content updated or copied successfully.",
+          duration: 2,
+          max_jshint_notifications: 1
+        }
+      },
+      js:{
+        options:{
+          title: "Grunt",
+          message: "Javascript compiled successfully.",
           duration: 2,
           max_jshint_notifications: 1
         }
@@ -105,11 +117,11 @@ module.exports = function(grunt) {
     watch: {
       sass: {
         files: ['<%= project.css %>/**/*.{scss,sass}','<%= project.components %>/**/*.{scss,sass}'],
-        tasks: ['sass','notify:sass']
+        tasks: ['sass','autoprefixer','notify:sass']
       },
-      autoprefixer:{
-        files: ['<%= project.build %>/style.css'],
-        tasks: ['autoprefixer', 'notify:autoprefixer']
+      js: {
+        files: ['<%= project.js %>/app.js','<%= project.js %>/**/*.jsx'],
+        tasks: ['babel', 'notify:js']
       },
       content: {
         files: ['<%= project.app %>/content/**/*', '<%= project.js %>/vendor/*.js'],
@@ -122,7 +134,7 @@ module.exports = function(grunt) {
         bsFiles: {
           src : [
             '<%= project.build %>/style.css',
-            '<%= project.build %>/**/*.{js,jsx}',
+            '<%= project.build %>/**/*.js',
             '<%= project.build %>/content/**/*',
             '<%= project.build %>/**/*.html'
           ]
@@ -141,12 +153,14 @@ module.exports = function(grunt) {
     'copy',
     'sass:dev',
     'autoprefixer',
+    'babel',
     'browserSync',
     'watch'
   ]);
   grunt.registerTask('build', [
     'clean',
     'copy',
-    'autoprefixer'
+    'autoprefixer',
+    'babel'
   ]);
 };
