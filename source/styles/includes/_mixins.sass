@@ -1,0 +1,12 @@
+// Mixins
+// --------------------------------------------------
+
+=centerVert ($position: absolute)
+  position: $position
+  top: 50%
+  transform: translateY(-50%)
+
+=cssAnimate ($property: all, $speed: 0.4s, $easing: ease)
+  transition: $property $speed $easing
+  -webkit-backface-visibility: hidden // prevents chrome pixel jumping
+  -webkit-transform: translateZ(0) scale(1.0, 1.0)
