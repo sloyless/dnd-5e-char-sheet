@@ -147,7 +147,7 @@ module.exports = function(grunt) {
         tasks: ['babel', 'notify:js']
       },
       pug: {
-        files: ['<%= project.app %>/**/*.pug'],
+        files: ['<%= project.app %>/**/*.pug', '<%= project.components %>/**/*.pug'],
         tasks: ['pug', 'notify:pug']
       },
       content: {

@@ -1,0 +1,65 @@
+section#module-abilities.module.col-xs-6
+  h1 Abilities
+  table.text-center.table.table-condensed.table-hover.table-striped.table-responsive
+    thead
+      tr
+        th Ability Name
+        th Ability Score
+        th Ability Modifier
+        th Temp Score
+        th Temp Modifier
+    tbody
+      tr
+        th.col-xs(scope="row") STR
+          br
+          small Strength
+        td.score
+          input#ability-str.text-center.form-control(type="number" class="form-control" value="15" min="1")
+        td.modifier 2
+        td 0
+        td 0
+      tr
+        th(scope="row") DEX
+          br
+          small Dexterity
+        td.score
+          input#ability-dex.text-center.form-control(type="number" class="form-control" value="17" min="1")
+        td.modifier 3
+        td 0
+        td 0
+      tr
+        th(scope="row") CON
+          br
+          small Constitution
+        td.score
+          input#ability-con.text-center.form-control(type="number" class="form-control" value="15" min="1")
+        td.modifier 2
+        td 0
+        td 0
+      tr
+        th(scope="row") INT
+          br
+          small Intelligence
+        td.score
+          input#ability-int.text-center.form-control(type="number" class="form-control" value="14" min="1")
+        td.modifier 2
+        td 0
+        td 0
+      tr
+        th(scope="row") WIS
+          br
+          small Wisdom
+        td.score
+          input#ability-wis.text-center.form-control(type="number" class="form-control" value="16" min="1")
+        td.modifier 3
+        td 0
+        td 0
+      tr
+        th(scope="row") CHA
+          br
+          small Charisma
+        td.score
+          input#ability-cha.text-center.form-control(type="number" class="form-control" value="8" min="1")
+        td.modifier -1
+        td 0
+        td 0
