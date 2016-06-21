@@ -1,0 +1,20 @@
+{"races": {
+  "dwarf": {
+    "constitution": "1",
+    "speed": "25",
+    "vision": "Darkvision 60'",
+    "size": "Medium"
+  },
+  "human": {
+    
+  },
+  "elf": {
+    "dexterity": "2",
+    "speed": "30",
+    "vision": "Darkvision 60'",
+    "size": "Medium"
+  },
+  "halfling": {
+
+  }
+}
